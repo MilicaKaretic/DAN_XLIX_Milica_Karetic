@@ -9,6 +9,11 @@ namespace DAN_XLIX_Milica_Karetic
 {
     class Validation
     {
+        /// <summary>
+        /// Validation for manager
+        /// </summary>
+        /// <param name="manager">Manager</param>
+        /// <returns>Valid or not</returns>
         public bool ValidManagerInput(vwManager manager)
         {
             string f = manager.Floor.ToString();
@@ -30,7 +35,11 @@ namespace DAN_XLIX_Milica_Karetic
         }
 
        
-
+        /// <summary>
+        /// Validation for creating employee -> floor must have manager
+        /// </summary>
+        /// <param name="floor">Floor number</param>
+        /// <returns>True or false</returns>
         private bool FloorHaveManager(int floor)
         {
             Service service = new Service();
@@ -44,6 +53,12 @@ namespace DAN_XLIX_Milica_Karetic
 
             return false;
         }
+
+        /// <summary>
+        /// Validation for creating new employee
+        /// </summary>
+        /// <param name="employee">Employee</param>
+        /// <returns>Valid or not</returns>
         public bool ValidEmployeeInput(vwEmployee employee)
         {
             string f = employee.Floor.ToString();

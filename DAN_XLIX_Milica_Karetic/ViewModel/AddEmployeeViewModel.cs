@@ -5,13 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DAN_XLIX_Milica_Karetic.ViewModel
 {
+    /// <summary>
+    /// Add employee view model class
+    /// </summary>
     class AddEmployeeViewModel : BaseViewModel
     {
         AddEmployee addEmployee;
@@ -127,7 +128,6 @@ namespace DAN_XLIX_Milica_Karetic.ViewModel
         {
             get
             {
-                //return Employee.IsValid;
                 return true;
             }
         }

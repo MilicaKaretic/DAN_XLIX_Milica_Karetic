@@ -1,11 +1,8 @@
 ﻿using DAN_XLIX_Milica_Karetic.Commands;
 using DAN_XLIX_Milica_Karetic.Model;
 using DAN_XLIX_Milica_Karetic.View;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 

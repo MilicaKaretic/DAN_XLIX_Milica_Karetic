@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DAN_XLIX_Milica_Karetic
@@ -119,6 +117,11 @@ namespace DAN_XLIX_Milica_Karetic
             }
         }
 
+        /// <summary>
+        /// Get user id based on username
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <returns>User id</returns>
         public int getUserId(string username)
         {
             try
@@ -140,6 +143,11 @@ namespace DAN_XLIX_Milica_Karetic
             }
         }
 
+       /// <summary>
+       /// Check if user is manager
+       /// </summary>
+       /// <param name="userid">User id</param>
+       /// <returns>Manager or not</returns>
         public bool IsManager(int userid)
         {
             List<tblManager> managers = GetAllManagers();
@@ -153,7 +161,11 @@ namespace DAN_XLIX_Milica_Karetic
             return false;
         }
 
-
+        /// <summary>
+        /// Check if user is employee
+        /// </summary>
+        /// <param name="userid">User id</param>
+        /// <returns>Employee or not</returns>
         public bool IsEmployee(int userid)
         {
             List<tblEmployee> managers = GetAllEmployees();
@@ -169,7 +181,7 @@ namespace DAN_XLIX_Milica_Karetic
 
 
         /// <summary>
-        /// Creates or edits a manager
+        /// Creates a manager
         /// </summary>
         /// <param name="manager">manager to add</param>
         /// <returns>a new manager</returns>
@@ -211,7 +223,7 @@ namespace DAN_XLIX_Milica_Karetic
                         manager.UserID = newManager.UserID;
 
                         return manager;
-                        //}
+                        
 
                     }
                 }
@@ -230,10 +242,10 @@ namespace DAN_XLIX_Milica_Karetic
         }
 
         /// <summary>
-        /// Creates or edits a manager
+        /// Creates  a employee
         /// </summary>
-        /// <param name="manager">manager to add</param>
-        /// <returns>a new manager</returns>
+        /// <param name="manager">employee to add</param>
+        /// <returns>a new employee</returns>
         public vwEmployee AddEmployee(vwEmployee employee)
         {
 
@@ -257,7 +269,7 @@ namespace DAN_XLIX_Milica_Karetic
                         context.tblUsers.Add(newManager);
                         context.SaveChanges();
 
-                        //manager
+                        //employee
                         int id = getUserId(employee.Username);
 
                         tblEmployee man = new tblEmployee();
@@ -274,7 +286,7 @@ namespace DAN_XLIX_Milica_Karetic
                         employee.UserID = newManager.UserID;
 
                         return employee;
-                        //}
+                        
 
                     }
                 }

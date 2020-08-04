@@ -29,6 +29,21 @@ namespace DAN_XLIX_Milica_Karetic
           
         }
 
+       
+
+        private bool FloorHaveManager(int floor)
+        {
+            Service service = new Service();
+            List<tblManager> managers = service.GetAllManagers();
+
+            for (int i = 0; i < managers.Count; i++)
+            {
+                if (floor == managers[i].Floor)
+                    return true;
+            }
+
+            return false;
+        }
         public bool ValidEmployeeInput(vwEmployee employee)
         {
             string f = employee.Floor.ToString();
@@ -36,10 +51,14 @@ namespace DAN_XLIX_Milica_Karetic
 
             if (Int32.TryParse(f, out int fl))
             {
-                if (employee.Gender.ToLower() == "m" || employee.Gender.ToLower() == "z")
+                if (FloorHaveManager(fl))
                 {
+                    if (employee.Gender.ToLower() == "m" || employee.Gender.ToLower() == "z")
+                    {
                         return true;
 
+                    }
+                    else return false;
                 }
                 else return false;
             }

@@ -104,16 +104,14 @@ namespace DAN_XLIX_Milica_Karetic.ViewModel
             try
             {
                 AddUser adminView = new AddUser();
-                service.AddManager(Manager);
-                IsUpdateManager = true;
+                if(service.AddManager(Manager) != null)
+                {
+                    IsUpdateManager = true;
 
-                //if (!bgWorker.IsBusy)
-                //{
-                //    // This method will start the execution asynchronously in the background
-                //    bgWorker.RunWorkerAsync();
-                //}
-                addManager.Close();
-                adminView.Show();
+                    addManager.Close();
+                    adminView.Show();
+                }
+                
             }
             catch (Exception ex)
             {

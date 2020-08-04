@@ -36,7 +36,7 @@ namespace DAN_XLIX_Milica_Karetic
 
             if (Int32.TryParse(f, out int fl))
             {
-                if (employee.Gender.ToLower() == "m" && employee.Gender.ToLower() == "z")
+                if (employee.Gender.ToLower() == "m" || employee.Gender.ToLower() == "z")
                 {
                         return true;
 

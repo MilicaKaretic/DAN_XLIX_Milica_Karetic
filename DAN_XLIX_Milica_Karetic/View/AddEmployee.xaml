@@ -4,8 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAN_XLIX_Milica_Karetic.View"
+        xmlns:c="clr-namespace:DAN_XLIX_Milica_Karetic.Converter"
+        xmlns:vm="clr-namespace:DAN_XLIX_Milica_Karetic.Model"
         mc:Ignorable="d"
         Title="AddEmployee" Height="450" Width="800">
+    <Window.Resources>
+        <c:RadioButtonConverter x:Key="radioButtonConverter" />
+        <vm:vwEmployee x:Key="data" />
+        <!--The tool tip for the TextBox to display the validation error message.-->
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -163,24 +170,28 @@
                           Name="cbclean"
                           Content="cleaning"
                           IsChecked="{Binding Employee.Engagement, 
+                Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=cleaning,
                 UpdateSourceTrigger=PropertyChanged}"></RadioButton>
             <RadioButton  GroupName="Engagement"
                           Width="65"
                           Name="cbcook"
                           Content="cooking"
                           IsChecked="{Binding Employee.Engagement, 
+                Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=cooking, 
                  UpdateSourceTrigger=PropertyChanged}"></RadioButton>
             <RadioButton  GroupName="Engagement"
                           Width="80"
                           Name="cbmon"
                           Content="monitoring"
                           IsChecked="{Binding Employee.Engagement, 
+                Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=monitoring, 
                 UpdateSourceTrigger=PropertyChanged}"></RadioButton>
             <RadioButton  GroupName="Engagement"
                           Width="70"
                           Name="cbrep"
                           Content="reporting"
                           IsChecked="{Binding Employee.Engagement, 
+                Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=reporting, 
                 UpdateSourceTrigger=PropertyChanged}"></RadioButton>
         </StackPanel>
         <Button Grid.Column="3"
@@ -195,41 +206,7 @@
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtFirstName, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtLastName, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtJMBG, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtBankAccount, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtEmail, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtSalary, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtPosition, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="0">
-                            <Setter Property="IsEnabled"
-                                    Value="False" />
-                        </DataTrigger>
+                        
                         <DataTrigger Binding="{Binding Text.Length, ElementName=txtUsername, UpdateSourceTrigger=PropertyChanged}"
                                      Value="0">
                             <Setter Property="IsEnabled"

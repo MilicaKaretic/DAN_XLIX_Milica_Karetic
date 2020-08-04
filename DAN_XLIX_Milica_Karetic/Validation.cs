@@ -28,5 +28,24 @@ namespace DAN_XLIX_Milica_Karetic
                 return false;
           
         }
+
+        public bool ValidEmployeeInput(vwEmployee employee)
+        {
+            string f = employee.Floor.ToString();
+            
+
+            if (Int32.TryParse(f, out int fl))
+            {
+                if (employee.Gender.ToLower() == "m" && employee.Gender.ToLower() == "z")
+                {
+                        return true;
+
+                }
+                else return false;
+            }
+            else
+                return false;
+
+        }
     }
 }

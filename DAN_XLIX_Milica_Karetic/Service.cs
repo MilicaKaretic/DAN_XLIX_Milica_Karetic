@@ -140,6 +140,34 @@ namespace DAN_XLIX_Milica_Karetic
             }
         }
 
+        public bool IsManager(int userid)
+        {
+            List<tblManager> managers = GetAllManagers();
+            for (int i = 0; i < managers.Count; i++)
+            {
+                if (userid == managers[i].UserID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public bool IsEmployee(int userid)
+        {
+            List<tblEmployee> managers = GetAllEmployees();
+            for (int i = 0; i < managers.Count; i++)
+            {
+                if (userid == managers[i].UserID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         /// <summary>
         /// Creates or edits a manager
         /// </summary>
@@ -199,6 +227,69 @@ namespace DAN_XLIX_Milica_Karetic
                 return null;
             }
             
+        }
+
+        /// <summary>
+        /// Creates or edits a manager
+        /// </summary>
+        /// <param name="manager">manager to add</param>
+        /// <returns>a new manager</returns>
+        public vwEmployee AddEmployee(vwEmployee employee)
+        {
+
+            if (v.ValidEmployeeInput(employee))
+            {
+                try
+                {
+                    using (HotelDBEntities context = new HotelDBEntities())
+                    {
+
+                        employee.DateOfBirth = employee.DateOfBirth;
+
+                        //user
+                        tblUser newManager = new tblUser();
+                        newManager.Name = employee.Name;
+                        newManager.DateOfBirth = employee.DateOfBirth;
+                        newManager.Email = employee.Email;
+                        newManager.Username = employee.Username;
+                        newManager.Password = employee.Password;
+
+                        context.tblUsers.Add(newManager);
+                        context.SaveChanges();
+
+                        //manager
+                        int id = getUserId(employee.Username);
+
+                        tblEmployee man = new tblEmployee();
+                        man.Floor = employee.Floor;
+                        man.Citizenship = employee.Citizenship;
+                        man.Gender = employee.Gender;
+                        man.Engagement = employee.Engagement;
+                        man.UserID = id;
+                        man.Salary = "0";
+
+                        context.tblEmployees.Add(man);
+                        context.SaveChanges();
+
+                        employee.UserID = newManager.UserID;
+
+                        return employee;
+                        //}
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Exception" + ex.Message.ToString());
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong data input. Please provide valid data to add new employee.");
+                return null;
+            }
+
         }
     }
 }

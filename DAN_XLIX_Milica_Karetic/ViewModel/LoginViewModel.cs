@@ -119,14 +119,16 @@ namespace DAN_XLIX_Milica_Karetic.ViewModel
                         LabelInfo = "Logged in";
                         found = true;
 
+                        int id = service.getUserId(User.Username);
 
-                        if (User.UserID == int.Parse(service.GetAllManagers().Where(id => id.UserID == User.UserID).ToString()))
+
+                        if (service.IsManager(id))
                         {
                             Manager man = new Manager();
                             view.Close();
                             man.Show();
                         }
-                        else if (User.UserID == int.Parse(service.GetAllEmployees().Where(id => id.UserID == User.UserID).ToString()))
+                        else if (service.IsEmployee(id))
                         {
                             Employee emp = new Employee();
                             view.Close();

@@ -22,6 +22,7 @@ namespace DAN_XLIX_Milica_Karetic.View
         public AddEmployee()
         {
             InitializeComponent();
+            this.DataContext = new AddEmployeeViewModel(this);
         }
     }
 }

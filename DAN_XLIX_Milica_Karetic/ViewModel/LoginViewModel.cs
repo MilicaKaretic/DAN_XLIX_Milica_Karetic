@@ -91,87 +91,61 @@ namespace DAN_XLIX_Milica_Karetic.ViewModel
         {
             string password = (obj as PasswordBox).Password;
             bool found = false;
-            bool correct = false;
 
             Owner owner = service.getOwner();
 
-            //if (UserList.Any())
-            //{
-            //    for (int i = 0; i < UserList.Count; i++)
-            //    {
-            //        if (User.JMBG == UserList[i].JMBG && password == "Gost")
-            //        {
-            //            Service.loggedUser.Add(UserList[i]);
-            //            Service.currentUser = UserList[i];
-
-            //            if (service.CheckOrderStatus(UserList[i].UserID))
-            //            {
-            //                MessageBox.Show("Your order is pending.");
-            //                Login log = new Login();
-            //                log.Show();
-            //                view.Close();
-            //            }
-            //            else
-            //            {
-            //                if (service.GetOrderStatus(UserList[i].UserID) == "approved")
-            //                {
-            //                    MessageBox.Show("Your order has been approved");
-            //                    Thread.Sleep(2000);
-            //                }
-            //                else if (service.GetOrderStatus(UserList[i].UserID) == "denied")
-            //                {
-            //                    MessageBox.Show("Your order has been denied");
-            //                    Thread.Sleep(2000);
-            //                }
-            //                MainWindow mw = new MainWindow();
-            //                LabelInfo = "Logged in";
-            //                found = true;
-            //                view.Close();
-            //                mw.Show();
-            //                break;
-            //            }
-            //            correct = true;
-            //            found = true;
-            //        }
-            //    }
-
-            //    if (found == false)
-            //    {
-            //        if (ValidJMBG(User.JMBG) && password == "Gost")
-            //        {
-            //            tblUser user = new tblUser();
-            //            user.JMBG = User.JMBG;
-            //            service.AddUser(user);
-
-            //            Service.currentUser = service.GetUser(User.JMBG);
-
-            //            MainWindow mw = new MainWindow();
-            //            LabelInfo = "Logged in";
-            //            found = true;
-            //            correct = true;
-            //            view.Close();
-            //            mw.Show();
-            //        }
-            //    }
-            //    if (correct == false)
-            //    {
-            //        LabelInfo = "Wrong Username or Password";
-            //    }
-
-            //}
-            //else
-            //{
-            //    LabelInfo = "Database is empty";
-            //}
-
             if (User.Username == owner.Username && password == owner.Password)
             {
-                MainWindow main = new MainWindow();
+                AddUser add = new AddUser();
                 view.Close();
-                main.Show();
+                add.Show();
             }
-        }
+            else if (UserList.Any())
+            {
+                for (int i = 0; i < UserList.Count; i++)
+                {
+                    if (User.Username == UserList[i].Username && password == UserList[i].Password)
+                    {
+                        LoggedInUser.CurrentUser = new tblUser()
+                        {
+                            UserID = UserList[i].UserID,
+                            Name = UserList[i].Name,
+                            DateOfBirth = UserList[i].DateOfBirth,
+                            Email = UserList[i].Email,
+                            Username = UserList[i].Username,
+                            Password = UserList[i].Password
+                        };
 
-        #endregion
+                        LabelInfo = "Logged in";
+                        found = true;
+
+
+                        if (User.UserID == int.Parse(service.GetAllManagers().Where(id => id.UserID == User.UserID).ToString()))
+                        {
+                            Manager man = new Manager();
+                            view.Close();
+                            man.Show();
+                        }
+                        else if (User.UserID == int.Parse(service.GetAllEmployees().Where(id => id.UserID == User.UserID).ToString()))
+                        {
+                            Employee emp = new Employee();
+                            view.Close();
+                            emp.Show();
+                        }
+                        break;
+
+                    }
+                }
+
+                if (found == false)
+                {
+                    LabelInfo = "Wrong Username or Password";
+                }
+
+
+            }
+
+            #endregion
+        }
     }
 }

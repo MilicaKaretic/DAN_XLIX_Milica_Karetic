@@ -34,8 +34,8 @@
                     Name="btnLogin"
                     Content="Login"
                     Margin="60 10"
-                    Background="#545d6a"
-                    Foreground="White"
+                    Background="White"
+                    Foreground="Black"
                     FontSize="18"
                     IsDefault="True">
                 <Button.Style>

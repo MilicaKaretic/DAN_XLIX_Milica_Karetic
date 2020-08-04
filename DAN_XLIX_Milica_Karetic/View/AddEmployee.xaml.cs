@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DAN_XLIX_Milica_Karetic
+namespace DAN_XLIX_Milica_Karetic.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddEmployee.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddEmployee : Window
     {
-        public MainWindow()
+        public AddEmployee()
         {
             InitializeComponent();
         }
-
-       
     }
 }

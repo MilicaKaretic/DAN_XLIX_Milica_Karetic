@@ -91,6 +91,7 @@
     <Compile Include="Model\tblUser.cs">
       <DependentUpon>HotelDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validation.cs" />
     <Compile Include="ViewModel\AddManagerViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

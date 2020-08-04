@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DAN_XLIX_Milica_Karetic
 {
@@ -13,9 +14,11 @@ namespace DAN_XLIX_Milica_Karetic
     {
 
         public static List<tblUser> loggedUser = new List<tblUser>();
-        //public static List<tblItem> items = new List<tblItem>();
+        
         public static tblUser currentUser = new tblUser();
-        //public static tblOrder currentOrder = new tblOrder();
+
+        Validation v = new Validation();
+        
 
         /// <summary>
         /// get all users from database
@@ -140,18 +143,17 @@ namespace DAN_XLIX_Milica_Karetic
         /// <summary>
         /// Creates or edits a manager
         /// </summary>
-        /// <param name="manager">manager to add or edit</param>
-        /// <returns>a new or edited manager</returns>
+        /// <param name="manager">manager to add</param>
+        /// <returns>a new manager</returns>
         public vwManager AddManager(vwManager manager)
         {
-            //InputCalculator iv = new InputCalculator();
-            try
+
+            if(v.ValidManagerInput(manager))
             {
-                using (HotelDBEntities context = new HotelDBEntities())
+                try
                 {
-                    //if (manager.UserID == 0)
-                    //{
-                        //manager.DateOfBirth = iv.CountDateOfBirth(manager.JMBG);
+                    using (HotelDBEntities context = new HotelDBEntities())
+                    {
 
                         manager.DateOfBirth = manager.DateOfBirth;
 
@@ -181,15 +183,22 @@ namespace DAN_XLIX_Milica_Karetic
                         manager.UserID = newManager.UserID;
 
                         return manager;
-                    //}
-                    
+                        //}
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Exception" + ex.Message.ToString());
+                    return null;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine("Exception" + ex.Message.ToString());
+                MessageBox.Show("Wrong data input. Please provide valid data to add new manager.");
                 return null;
             }
+            
         }
     }
 }
